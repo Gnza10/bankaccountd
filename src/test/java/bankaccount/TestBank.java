@@ -21,7 +21,7 @@ public class TestBank {
 
     @Test
     @DisplayName("Withdrawing less money than the balance")
-    void withdrawMoneyLessThanBalanceShouldReturnTrue() {
+    void withdraw_MoneyLessThanBalance_ReturnTrue() {
         int amount = 50;
         
         assert(banco.withdraw(amount));
@@ -29,7 +29,7 @@ public class TestBank {
 
     @Test
     @DisplayName("Withdrawing more money than the balance")
-    void withdrawMoneyMoreThanBalanceShouldReturnFalse() {
+    void withdraw_MoneyMoreThanBalance_ReturnFalse() {
         int amount = 110;
         
         assertFalse(banco.withdraw(amount));
@@ -37,16 +37,15 @@ public class TestBank {
 
     @Test
     @DisplayName("Withdrawing a negative amount")
-    void withdrawNegativeAmountThrowsIllegalArgumentException(){
+    void withdraw_NegativeAmount_ThrowsIllegalArgumentException(){
         int amount = -10;
-        //Falla puesto que no hay control de errores en el método withdraw, por lo que se debeía mejorar este aspecto del
-        //código
+        //He modificado el código original para que tenga control de errores
         assertThrows(IllegalArgumentException.class, () -> banco.withdraw(amount));
     }
 
     @Test
     @DisplayName("Deposit of a postive amount")
-    void depositPositiveAmountReturnBalancePlusAmount(){
+    void deposit_PositiveAmount_ReturnBalancePlusAmount(){
         int amount = 50;
         int initialBalance = banco.getBalance();
 
@@ -57,7 +56,7 @@ public class TestBank {
 
     @Test
     @DisplayName("Deposit of a negative amount")
-    void depositNegativeAmountThrowsIllegalArgumentException(){
+    void deposit_NegativeAmount_ThrowsIllegalArgumentException(){
         int amount = -10;
         
         assertThrows(IllegalArgumentException.class, () -> banco.deposit(amount));
@@ -65,7 +64,7 @@ public class TestBank {
 
     @Test
     @DisplayName("Testing the getBalance()")
-    void getBalanceReturn100(){
+    void getBalance_Return100(){
         int amount;
 
         amount = banco.getBalance();
@@ -75,7 +74,7 @@ public class TestBank {
 
     @Test
     @DisplayName("Testing the payment()")
-    void paymentReturnCorrectValue(){
+    void payment_ReturnCorrectValue(){
         double amount = 10000;
         double interest = 0.001;
         int npayments = 12;
@@ -88,17 +87,17 @@ public class TestBank {
 
     @Test
     @DisplayName("Testing the payment for negative values")
-    void paymentNegativeValuesThrowsIllegalArgumentException(){
+    void payment_NegativeValues_ThrowsIllegalArgumentException(){
         double amount = -10000;
         double interest = -0.001;
         int npayments = -12;
-        //De nuevo al no haber control de errores falla el test, se debería mejorar este aspecto del código
+        //He modificado el código original para que tenga control de errores
         assertThrows(IllegalArgumentException.class, () -> banco.payment(amount, interest, npayments));
     }
 
     @Test
     @DisplayName("Testing the pending() for 0 months")
-    void pendingReturnAmountFor0Months(){
+    void pending_For0Months_ReturnAmount(){
         double amount = 100;
         double interest = 0.2;
         int npayments = 12;
@@ -111,7 +110,7 @@ public class TestBank {
 
     @Test
     @DisplayName("Testing the pending() for more than 0 months")
-    void pendingReturnAmountForMoreThan0Months(){
+    void pending_ForMoreThan0Months_ReturnCorrectValue(){
         double amount = 10000;
         double interest = 0.001;
         int npayments = 12;
@@ -125,12 +124,12 @@ public class TestBank {
 
     @Test
     @DisplayName("Testing the pending() for negative values")
-    void pendingNegativeValuesThrowsIllegalArgumentException(){
+    void pending_NegativeValues_ThrowsIllegalArgumentException(){
         double amount = -10000;
         double interest = -0.001;
         int npayments = -12;
         int month = -2;
-        //De nuevo al no haber control de errores falla el test, se debería mejorar este aspecto del código
+        //He modificado el código original para que tenga control de errores
         assertThrows(IllegalArgumentException.class, () -> banco.pending(amount, interest, npayments, month));
     }
 }
